@@ -2,7 +2,7 @@
 
 import type { Session } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-import { isConfigured, supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { Nav } from "./Nav";
 import { Button, Input } from "./ui";
 
@@ -10,22 +10,11 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
 
   useEffect(() => {
-    if (!isConfigured()) return;
     supabase().auth.getSession().then(({ data }) => setSession(data.session));
     const { data } = supabase().auth.onAuthStateChange((_e, s) => setSession(s));
     return () => data.subscription.unsubscribe();
   }, []);
 
-  if (!isConfigured()) {
-    return (
-      <Centered>
-        <h1 className="font-serif text-2xl mb-3">Dielňa nie je nastavená</h1>
-        <p className="text-muted">
-          Chýbajú premenné <code>NEXT_PUBLIC_SUPABASE_URL</code> a <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>. Postup je v README.
-        </p>
-      </Centered>
-    );
-  }
   if (session === undefined) return null;
   if (!session) return <Login />;
   return (

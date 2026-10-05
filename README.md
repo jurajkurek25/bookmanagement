@@ -16,13 +16,15 @@ Pracovný nástroj na písanie knihy *(Ne)potrebný muž*. Celá kniha je postav
 | **Kontrola** | Žargón, jazyk manosféry, písanie o samovražde podľa odporúčaní WHO, stigmatizujúci jazyk o závislosti. Len upozorňuje, nič neprepisuje |
 | **Export** | DOCX, ePub, PDF (A5). Tvrdenia so zdrojom sa stanú poznámkami na konci kapitoly, na konci knihy je zoznam zdrojov. Dá sa exportovať aj len pracovné listy |
 
-## Nastavenie (jednorazovo)
+## Nastavenie
 
-1. **Supabase projekt.** V [Supabase](https://supabase.com) otvor projekt (alebo vytvor nový) → **SQL Editor** → vlož a spusti obsah `supabase/migrations/0001_init.sql`.
-2. **Tvoj účet.** **Authentication → Users → Add user** (e-mail a heslo). Potom v **Authentication → Sign In / Providers** vypni registráciu nových používateľov, aby sa nikto iný nemohol prihlásiť.
-3. **Kľúče.** Skopíruj `.env.example` do `.env.local` a doplň:
-   - `NEXT_PUBLIC_SUPABASE_URL` a `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Supabase → Project Settings → API),
-   - `ANTHROPIC_API_KEY` z [console.anthropic.com](https://console.anthropic.com) (bez neho funguje všetko okrem asistenta).
+Databáza už beží v Supabase projekte **dielna-nepotrebny-muz** (Frankfurt) so schémou z `supabase/migrations/`. Kód je s ním prepojený v `src/lib/config.ts`; publishable kľúč je verejný, dáta chránia pravidlá RLS.
+
+Treba ešte:
+
+1. **Tvoj účet.** V [Supabase](https://supabase.com/dashboard/project/fyfwvjkrqqlxwshpbnyb/auth/users) → **Authentication → Users → Add user** (e-mail a heslo).
+2. **Zakázať registráciu.** **Authentication → Sign In / Providers** → vypni *Allow new users to sign up*. Inak by sa mohol zaregistrovať ktokoľvek a míňať kredit asistenta.
+3. **Kľúč asistenta.** Skopíruj `.env.example` do `.env.local` a doplň `ANTHROPIC_API_KEY` z [console.anthropic.com](https://console.anthropic.com). Bez neho funguje všetko okrem asistenta.
 4. **Spustenie.**
    ```bash
    npm install
@@ -32,7 +34,7 @@ Pracovný nástroj na písanie knihy *(Ne)potrebný muž*. Celá kniha je postav
 
 ### Nasadenie na web (napr. Vercel)
 
-Importuj repozitár do [Vercel](https://vercel.com), nastav rovnaké tri premenné prostredia a nasaď. Asistent aj import zdrojov bežia na serveri a fungujú len pre prihláseného používateľa.
+Importuj repozitár do [Vercel](https://vercel.com), nastav premennú `ANTHROPIC_API_KEY` a nasaď. Asistent aj import zdrojov bežia na serveri a fungujú len pre prihláseného používateľa.
 
 ## Vývoj
 

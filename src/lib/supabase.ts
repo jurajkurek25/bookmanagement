@@ -1,13 +1,10 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { SUPABASE_KEY, SUPABASE_URL } from "./config";
 
 let client: SupabaseClient | null = null;
 
-export function isConfigured(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-}
-
 export function supabase(): SupabaseClient {
-  if (!client) client = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+  if (!client) client = createClient(SUPABASE_URL, SUPABASE_KEY);
   return client;
 }
 
