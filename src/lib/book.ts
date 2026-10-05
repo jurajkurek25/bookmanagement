@@ -9,13 +9,13 @@ export type Level = { level: number; name: string; subtitle: string; defaultPage
 // Poradie podľa pyramídy: 1 je vrchol, 9 sú korene. Kniha ide zdola nahor (9 → 1).
 export const LEVELS: Level[] = [
   { level: 1, name: "Transcendencia", subtitle: "Presah, odkaz, duchovno", defaultPages: 70 },
-  { level: 2, name: "Vzťahy", subtitle: "Ľudské prepojenie", defaultPages: 110 },
+  { level: 2, name: "Vzťahy", subtitle: "Ľudské prepojenie · sexualita a príťažlivosť", defaultPages: 110 },
   { level: 3, name: "Zmysel, mentorstvo, otcovstvo", subtitle: "Srdce knihy", defaultPages: 120 },
   { level: 4, name: "Komunikácia a charizma", subtitle: "Ako sa hodnoty prenášajú do sveta", defaultPages: 90 },
   { level: 5, name: "Peniaze a majetok", subtitle: "Nástroj na stabilitu", defaultPages: 80 },
   { level: 6, name: "Praktické zručnosti", subtitle: "Postarať sa o seba a iných", defaultPages: 70 },
   { level: 7, name: "Telo", subtitle: "Fyzický základ", defaultPages: 80 },
-  { level: 8, name: "Mentálne nastavenie", subtitle: "Vnútorná integrita", defaultPages: 100 },
+  { level: 8, name: "Mentálne nastavenie", subtitle: "Vnútorná integrita · nice guy syndróm", defaultPages: 100 },
   { level: 9, name: "História mužnosti", subtitle: "Korene", defaultPages: 80 },
 ];
 
